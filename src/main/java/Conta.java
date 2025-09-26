@@ -61,10 +61,6 @@ public class Conta {
         this.saldo = this.saldo.subtract(quantia);
     }
 
-    public static void setAgenciaDefault(int agenciaDefault) {
-        Conta.agenciaDefault = agenciaDefault;
-    }
-
     public static int getAgenciaDefault() {
         return agenciaDefault;
     }
