@@ -27,6 +27,16 @@ public class Banco {
         throw new IllegalStateException("Não há mais espaços disponíveis para novas contas");
     }
 
+    public Conta buscarPorNumero(long numConta){
+        if (numConta < 0) throw new IllegalArgumentException("Numero de conta informado para busca não pode ser negativo");
+        for(Conta conta : contas){
+            if (conta != null && conta.getNumero() == numConta){
+                return conta;
+            }
+        }
+        return null;
+    }
+
     public void setNomeSocial(String nomeSocial) {
         if (nomeSocial == null || nomeSocial.isBlank()) throw new IllegalArgumentException("Nome social do banco não pode ser nulo ou em branco");
         this.nomeSocial = nomeSocial;
