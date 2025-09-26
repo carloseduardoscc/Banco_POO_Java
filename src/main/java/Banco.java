@@ -24,7 +24,7 @@ public class Banco {
                 return;
             }
         }
-        throw new IllegalStateException("Não há mais espaços disponíveis para novas contas");
+        throw new IllegalStateException("Banco atingiu a capacidade máxima de "+MAX_CONTAS+ " contas");
     }
 
     public Conta buscarPorNumero(long numConta){
