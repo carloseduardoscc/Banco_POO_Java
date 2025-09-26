@@ -95,11 +95,11 @@ public class Conta {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Conta conta = (Conta) o;
-        return numero == conta.numero && agencia == conta.agencia && Objects.equals(titular, conta.titular);
+        return numero == conta.numero;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numero, agencia, titular);
+        return Objects.hashCode(numero);
     }
 }
