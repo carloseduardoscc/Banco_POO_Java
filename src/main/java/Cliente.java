@@ -2,11 +2,13 @@ import java.util.Objects;
 
 public class Cliente {
     private String nome;
-    private final int cpf;
+    private final String cpf;
 
-    public Cliente(int cpf, String nome) {
+    public Cliente(String cpf, String nome) {
+        if (nome == null || nome.isBlank()) throw new IllegalArgumentException("Nome não pode ser nulo ou em branco");
+        if (cpf == null || !cpf.matches("\\d{11}")) throw new IllegalArgumentException("Nome não pode ser nulo ou em branco");
         this.cpf = cpf;
-        this.nome = nome;
+        this.nome = nome.trim();
     }
 
     public String getNome() {
@@ -17,7 +19,7 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
