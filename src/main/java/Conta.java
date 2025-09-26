@@ -2,6 +2,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
+//todo remover blocos estáticos desecessários
 public class Conta {
     private static final AtomicLong SEQ;
     private static int agenciaDefault;
