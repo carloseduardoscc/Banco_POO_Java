@@ -17,6 +17,12 @@ public class Conta {
     private final Cliente titular;
 
     public Conta(int agencia, Cliente titular) {
+        if (titular == null){
+            throw new IllegalArgumentException("Titular não pode ser nulo");
+        }
+        if (agencia < 0){
+            throw new IllegalArgumentException("Agência inválida");
+        }
         this.agencia = agencia;
         this.titular = titular;
     }
