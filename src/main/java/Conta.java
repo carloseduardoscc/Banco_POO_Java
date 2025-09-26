@@ -2,11 +2,12 @@ import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
+//todo fixar escala (2 casas) e RoundingMode na entrada (normaliza).
 public class Conta {
     private static final AtomicLong SEQ = new AtomicLong(1);
     private static int agenciaDefault = 1;
 
-    public static void definirAgenciaDefault(int novaAgenciaDefault){
+    public static void definirAgenciaDefault(int novaAgenciaDefault) {
         agenciaDefault = novaAgenciaDefault;
     }
 
@@ -25,17 +26,20 @@ public class Conta {
         this.agencia = agenciaDefault;
     }
 
-    public void transferir(BigDecimal quantia, Conta contaRecebedoraDoDeposito) {
+    public void transferir(BigDecimal quantia, Conta contaDestino) {
+        if (this.equals(contaDestino)) {
+            throw new IllegalArgumentException("Conta de destino não pode ser a mesma que a pagadora");
+        }
         try {
             this.sacar(quantia);
-            contaRecebedoraDoDeposito.depositar(quantia);
+            contaDestino.depositar(quantia);
         } catch (RuntimeException e) {
-            throw new RuntimeException("Não foi possível concluir a transferência bancária: " + e.getMessage());
+            throw new RuntimeException("Não foi possível concluir a transferência bancária: " + e.getMessage(), e.getCause());
         }
     }
 
     public void depositar(BigDecimal quantia) {
-            if (quantia == null || quantia.signum() <= 0) {
+        if (quantia == null || quantia.signum() <= 0) {
             throw new IllegalArgumentException("Valor de depósito não pode ser nulo, 0 ou negativo");
         }
         this.saldo = this.saldo.add(quantia);
