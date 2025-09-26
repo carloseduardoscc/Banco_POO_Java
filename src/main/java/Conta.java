@@ -6,6 +6,10 @@ public class Conta {
     private static final AtomicLong SEQ = new AtomicLong(1);
     private static int agenciaDefault = 1;
 
+    public static void definirAgenciaDefault(int novaAgenciaDefault){
+        agenciaDefault = novaAgenciaDefault;
+    }
+
     private long numero = SEQ.getAndIncrement();
     private BigDecimal saldo = new BigDecimal(0);;
     private final int agencia;
