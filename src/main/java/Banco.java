@@ -1,5 +1,7 @@
+import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Banco {
     private static final int MAX_CONTAS = 50;
@@ -27,14 +29,15 @@ public class Banco {
         throw new IllegalStateException("Banco atingiu a capacidade máxima de "+MAX_CONTAS+ " contas");
     }
 
-    public Conta buscarPorNumero(long numConta){
+    public Optional<Conta> buscarPorNumero(long numConta){
         if (numConta < 0) throw new IllegalArgumentException("Numero de conta informado para busca não pode ser negativo");
+        Optional<Conta> contaOpt;
         for(Conta conta : contas){
             if (conta != null && conta.getNumero() == numConta){
-                return conta;
+                return contaOpt = Optional.of(conta);
             }
         }
-        return null;
+        return Optional.empty();
     }
 
     public void setNomeSocial(String nomeSocial) {
