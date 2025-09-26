@@ -57,7 +57,6 @@ public class Banco {
     @Override
     public String toString() {
         return "Banco{" +
-                "contas=" + Arrays.toString(contas) +
                 ", nomeSocial='" + nomeSocial + '\'' +
                 ", cnpj='" + cnpj + '\'' +
                 '}';
