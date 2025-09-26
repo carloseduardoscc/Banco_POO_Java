@@ -11,7 +11,7 @@ public class Conta {
     }
 
     private long numero = SEQ.getAndIncrement();
-    private BigDecimal saldo = new BigDecimal(0);;
+    private BigDecimal saldo = BigDecimal.ZERO;
     private final int agencia;
     private final Cliente titular;
 
@@ -35,7 +35,7 @@ public class Conta {
     }
 
     public void depositar(BigDecimal quantia) {
-        if (quantia == null || quantia.longValue() <= 0) {
+            if (quantia == null || quantia.signum() <= 0) {
             throw new IllegalArgumentException("Valor de depósito não pode ser nulo, 0 ou negativo");
         }
         this.saldo = this.saldo.add(quantia);
