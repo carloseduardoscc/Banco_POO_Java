@@ -3,13 +3,23 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Conta {
-    private static final AtomicLong SEQ = new AtomicLong(1);
-    private static int agenciaDefault = 001;
+    private static final AtomicLong SEQ;
+    private static int agenciaDefault;
+
+    static{
+        SEQ  = new AtomicLong(1);
+        agenciaDefault = 1;
+    }
 
     private long numero;
     private BigDecimal saldo;
     private final int agencia;
     private final Cliente titular;
+
+    {
+        numero = SEQ.getAndIncrement();
+        saldo = new BigDecimal(0);
+    }
 
     public Conta(int agencia, Cliente titular) {
         this.agencia = agencia;
